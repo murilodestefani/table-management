@@ -20,16 +20,17 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "types": ["node"],
-    "baseUrl": ".src",
+
+    "baseUrl": "./src",
     "paths": {
-      "@/*": ["src/*"],
-      "@components/*": ["components/*"],
-      "@assets/*": ["assets/*"],
-      "@pages/*": ["pages/*"],
-      "@styles/*": ["assets/styles/*"],
-      "@images/*": ["assets/styles/images/*"]
+      "@/*": ["./*"],
+      "@components/*": ["./components/*"],
+      "@assets/*": ["./assets/*"],
+      "@pages/*": ["./pages/*"],
+      "@styles/*": ["./assets/styles/*"],
+      "@images/*": ["./assets/styles/images/*"]
     }
   },
-  "include": ["src"],
+  "include": ["src", "src/**/*.tsx"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
