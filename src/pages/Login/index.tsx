@@ -3,11 +3,13 @@ import { useNavigate } from "react-router-dom";
 import { auth } from "../../services/firebaseConnection";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import person from "@images/person.png";
+import { useAuth } from "@context/AuthContext";
 
 export function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const { setIsAuthenticated } = useAuth();
 
   function handleLogin(e: FormEvent) {
     e.preventDefault();
@@ -20,6 +22,7 @@ export function Login() {
     signInWithEmailAndPassword(auth, email, password)
       .then(() => {
         alert(`Logado com sucesso!`);
+        setIsAuthenticated(true);
         navigate("/home", { replace: true });
       })
       .catch((error) => {

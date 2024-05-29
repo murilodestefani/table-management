@@ -4,6 +4,7 @@ import { NotFound } from "@pages/NotFound";
 import { createBrowserRouter } from "react-router-dom";
 import { Welcome } from "@pages/Welcome";
 import { Login } from "@pages/Login";
+import { Private } from "@routes/private";
 
 const router = createBrowserRouter([
   {
@@ -19,7 +20,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/home",
-        element: <Home />,
+        element: (
+          <Private>
+            <Home />
+          </Private>
+        ),
       },
       {
         path: "*",
