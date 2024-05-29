@@ -7,7 +7,7 @@
 }
 
 main {
-  @apply flex h-svh max-h-[896px] w-svw max-w-[414px] flex-col bg-gradient-to-r from-[#FCFCFC] from-0% via-[#F7F7F7] via-[#F7F7F7] via-[#F7F7F7] via-30% via-50% via-90% to-[#FCFCFC];
+  @apply flex h-svh max-h-[896px] w-svw max-w-[414px] flex-col bg-gradient-to-r from-[#FCFCFC] from-0% via-[#F7F7F7] via-50% to-[#FCFCFC];
 }
 
 body {
