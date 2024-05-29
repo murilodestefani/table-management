@@ -33,7 +33,7 @@ export function Login() {
       <section className="flex h-full w-full items-center justify-center p-4">
         <form
           onSubmit={handleLogin}
-          className="flex w-full flex-col gap-4 rounded-2xl bg-white p-8"
+          className="flex w-full flex-col gap-4 rounded-2xl bg-white p-8 shadow-xl shadow-zinc-200"
         >
           <div className="flex flex-col items-center gap-1">
             <h1 className="text-lg font-extrabold text-[#FA5A00]">Login!</h1>
