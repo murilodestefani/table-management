@@ -4,9 +4,9 @@ import { Footer } from "@components/Footer";
 export function Layout() {
   return (
     <>
-      {/* <Header /> */}
+      <Header />
       <Outlet />
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 }

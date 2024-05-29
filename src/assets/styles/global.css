@@ -15,7 +15,7 @@ body {
 }
 
 input {
-  @apply rounded-xl bg-[#FCFCFC] px-4 py-6 text-sm font-medium placeholder:text-[#8E8EA9] w-full focus:outline-none;
+  @apply w-full rounded-xl bg-[#FCFCFC] px-4 py-6 text-sm font-medium placeholder:text-[#8E8EA9] focus:outline-none;
 }
 
 h1,
@@ -30,5 +30,5 @@ span {
 }
 
 button {
-  @apply bg-[#FF5C01] text-white font-semibold px-6 py-4 flex gap-2 justify-center rounded-2xl w-fit focus:outline-none focus:ring focus:ring-[#8E8EA9];
+  @apply flex w-fit justify-center gap-2 rounded-2xl bg-[#FF5C01] px-6 py-4 font-semibold text-white focus:outline-none focus:ring focus:ring-[#8E8EA9];
 }

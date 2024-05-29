@@ -27,6 +27,7 @@
       "@components/*": ["./components/*"],
       "@assets/*": ["./assets/*"],
       "@pages/*": ["./pages/*"],
+      "@service/*": ["./services/*"],
       "@styles/*": ["./assets/styles/*"],
       "@images/*": ["./assets/styles/images/*"]
     }
