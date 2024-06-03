@@ -1,9 +1,5 @@
 import { createContext, useContext, useState, ReactNode } from "react";
-
-interface AuthContextProps {
-  isAuthenticated: boolean;
-  setIsAuthenticated: (isAuthenticated: boolean) => void;
-}
+import { AuthContextProps } from "@/interfaces";
 
 const AuthContext = createContext<AuthContextProps | undefined>(undefined);
 

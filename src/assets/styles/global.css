@@ -7,28 +7,5 @@
 }
 
 main {
-  @apply flex h-svh max-h-[896px] w-svw max-w-[414px] flex-col bg-gradient-to-r from-[#FCFCFC] from-0% via-[#F7F7F7] via-50% to-[#FCFCFC];
-}
-
-body {
-  @apply flex h-svh w-svw items-center justify-center;
-}
-
-input {
-  @apply w-full rounded-xl bg-[#FCFCFC] px-4 py-6 text-sm font-medium placeholder:text-[#8E8EA9] focus:outline-none;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-span {
-  @apply text-[#32324D];
-}
-
-button {
-  @apply flex w-fit justify-center gap-2 rounded-2xl bg-[#FF5C01] px-6 py-4 font-semibold text-white focus:outline-none focus:ring focus:ring-[#8E8EA9];
+  @apply w-full p-4;
 }

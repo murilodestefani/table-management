@@ -1,23 +1,27 @@
 import { Layout } from "@components/Layout";
 import { Home } from "@pages/Home";
 import { NotFound } from "@pages/NotFound";
-import { createBrowserRouter } from "react-router-dom";
 import { Welcome } from "@pages/Welcome";
 import { Login } from "@pages/Login";
-import { Private } from "@routes/private";
+import { createBrowserRouter } from "react-router-dom";
+import { Private } from "./routes/private";
 
-const router = createBrowserRouter([
+export const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Welcome />,
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "*",
+    element: <NotFound />,
+  },
   {
     element: <Layout />,
     children: [
-      {
-        path: "/",
-        element: <Welcome />,
-      },
-      {
-        path: "/login",
-        element: <Login />,
-      },
       {
         path: "/home",
         element: (
@@ -26,12 +30,6 @@ const router = createBrowserRouter([
           </Private>
         ),
       },
-      {
-        path: "*",
-        element: <NotFound />,
-      },
     ],
   },
 ]);
-
-export { router };

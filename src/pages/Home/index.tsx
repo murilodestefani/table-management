@@ -1,16 +1,29 @@
-import { ArrowLeft } from "@phosphor-icons/react";
+import { Tables } from "@components/Tables";
+import { Clients } from "@components/Clients";
+import { Foods } from "@components/Foods";
+import { useOutletContext } from "react-router-dom";
+
+type ComponentType = "tables" | "clients" | "foods";
+
+interface OutletContext {
+  activeComponent: ComponentType;
+}
 
 export function Home() {
-  return (
-    <main>
-      <section className="p-4">
-        <header className="flex items-center justify-between">
-          <p>Bem vindo 👋</p>
-          <button className="bg-white p-3 shadow-xl shadow-zinc-200">
-            <ArrowLeft weight="bold" className="text-xl text-[#666687]" />
-          </button>
-        </header>
-      </section>
-    </main>
-  );
+  const { activeComponent } = useOutletContext<OutletContext>();
+
+  const renderComponent = () => {
+    switch (activeComponent) {
+      case "tables":
+        return <Tables />;
+      case "clients":
+        return <Clients />;
+      case "foods":
+        return <Foods />;
+      default:
+        return <Tables />;
+    }
+  };
+
+  return <main>{renderComponent()}</main>;
 }

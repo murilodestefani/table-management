@@ -4,6 +4,8 @@ import { auth } from "../../services/firebaseConnection";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import person from "@images/person.png";
 import { useAuth } from "@context/AuthContext";
+import { Button, Image, Input } from "@nextui-org/react";
+import { Envelope, Key } from "@phosphor-icons/react";
 
 export function Login() {
   const [email, setEmail] = useState("");
@@ -33,34 +35,42 @@ export function Login() {
 
   return (
     <main>
-      <section className="flex h-full w-full items-center justify-center p-4">
+      <section className="flex flex-col h-full w-full items-center justify-center">
         <form
           onSubmit={handleLogin}
-          className="flex w-full flex-col gap-4 rounded-2xl bg-white p-8 shadow-xl shadow-zinc-200"
+          className="flex flex-col gap-4 rounded-2xl p-8 shadow-xl"
         >
           <div className="flex flex-col items-center gap-1">
-            <h1 className="text-lg font-extrabold text-[#FA5A00]">Login!</h1>
-            <p className="text-lg font-medium text-[#8E8EA9]">
-              Digite seu email e senha.
-            </p>
+            <h1 className="text-lg font-extrabold text-primary">Login!</h1>
+            <p className="text-lg font-medium">Digite seu email e senha.</p>
           </div>
 
-          <img src={person} />
-          <input
+          <Image src={person} />
+
+          <Input
             type="email"
-            placeholder="email@exemplo.com"
+            label="Email"
+            placeholder="Digite seu email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            startContent={
+              <Envelope className="pointer-events-none flex-shrink-0 text-2xl text-default-400" />
+            }
           />
-          <input
+          <Input
             type="password"
-            placeholder="********"
+            label="Senha"
+            placeholder="Entre com sua senha"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            startContent={
+              <Key className="pointer-events-none flex-shrink-0 text-2xl text-default-400" />
+            }
           />
-          <button className="w-full" type="submit">
+
+          <Button type="submit" color="primary" size="lg">
             Entrar
-          </button>
+          </Button>
         </form>
       </section>
     </main>
