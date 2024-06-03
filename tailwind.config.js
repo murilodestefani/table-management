@@ -27,6 +27,7 @@ export default {
               foreground: "#FFFFFF",
               DEFAULT: "#FF5C01",
             },
+            focus: "#FF5C01",
           },
         },
         dark: {
@@ -34,6 +35,7 @@ export default {
             primary: {
               DEFAULT: "#FF5C01",
             },
+            focus: "#FF5C01",
           }
         }
       },

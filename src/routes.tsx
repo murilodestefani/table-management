@@ -1,4 +1,3 @@
-import { Layout } from "@components/Layout";
 import { Home } from "@pages/Home";
 import { NotFound } from "@pages/NotFound";
 import { Welcome } from "@pages/Welcome";
@@ -16,20 +15,15 @@ export const router = createBrowserRouter([
     element: <Login />,
   },
   {
-    path: "*",
-    element: <NotFound />,
+    path: "/home",
+    element: (
+      <Private>
+        <Home />
+      </Private>
+    ),
   },
   {
-    element: <Layout />,
-    children: [
-      {
-        path: "/home",
-        element: (
-          <Private>
-            <Home />
-          </Private>
-        ),
-      },
-    ],
+    path: "*",
+    element: <NotFound />,
   },
 ]);

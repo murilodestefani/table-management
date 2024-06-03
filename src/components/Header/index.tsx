@@ -42,7 +42,7 @@ export function Header() {
             <p className="text-xs font-semibold">nome@estudante.ifms.edu.br</p>
           </div>
         </NavbarBrand>
-        <NavbarContent>
+        <NavbarContent justify="end" className="flex gap-1">
           <Switch
             onChange={handleThemeChange}
             defaultSelected
@@ -51,9 +51,7 @@ export function Header() {
             startContent={<Moon weight="fill" />}
             endContent={<Sun weight="fill" />}
           ></Switch>
-        </NavbarContent>
-        <NavbarContent justify="end">
-          <Button onClick={handleSignOut} size="sm" isIconOnly variant="flat">
+          <Button onClick={handleSignOut} size="sm" isIconOnly>
             <SignOut />
           </Button>
         </NavbarContent>
