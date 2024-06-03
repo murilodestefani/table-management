@@ -185,7 +185,7 @@ export const Clients: React.FC = () => {
       </Button>
 
       {/* Tabela para exibir os clientes cadastrados */}
-      <Table>
+      <Table isStriped className="">
         <TableHeader>
           <TableColumn>NOME</TableColumn>
           <TableColumn>TELEFONE</TableColumn>
@@ -193,8 +193,7 @@ export const Clients: React.FC = () => {
         </TableHeader>
 
         <TableBody
-          emptyContent={<Spinner label="Carregando..." color="primary" />}
-        >
+          emptyContent={<Spinner label="Carregando..." color="primary" />}>
           {/* Mapeamento dos clientes para renderização das linhas da tabela */}
           {clients.map((client) => (
             <TableRow key={client.id}>
