@@ -16,9 +16,9 @@ export function Foods() {
         </Chip>
       </header>
 
-      <div className="z-10 h-full overflow-y-auto">
+      <div className="z-10 h-full overflow-x-auto whitespace-nowrap">
         {foods.map((food, index) => (
-          <article className="block bg-transparent p-2">
+          <article className="inline-block bg-transparent p-2">
             <Card className="w-full" shadow="sm" key={index}>
               <CardBody className="overflow-visible p-0">
                 <Image
@@ -27,7 +27,7 @@ export function Foods() {
                   radius="lg"
                   width="100%"
                   alt={food.name}
-                  className="h-[250px] w-full object-cover"
+                  className="h-[200px] w-full object-cover"
                   src={food.img}
                 />
               </CardBody>

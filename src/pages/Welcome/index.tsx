@@ -7,7 +7,7 @@ import { Link } from "react-router-dom"; // Importa o componente Link do React R
 export function Welcome() {
   return (
     // Conteúdo da página de boas-vindas
-    <main className="relative h-screen w-full p-0">
+    <main className="relative h-svh w-full p-0">
       {/* Camada de gradiente para sobrepor a imagem de fundo */}
       <div className="absolute inset-0 z-20 bg-gradient-to-b from-transparent to-black"></div>
       {/* Camada de opacidade para escurecer a imagem de fundo */}
@@ -31,7 +31,13 @@ export function Welcome() {
         </span>
         {/* Botão de redirecionamento para a página de login */}
         <Link to="/login">
-          <Button className="mb-6" isIconOnly color="primary" size="lg" radius="full">
+          <Button
+            className="mb-6"
+            isIconOnly
+            color="primary"
+            size="lg"
+            radius="full"
+          >
             <ArrowRight color="white" className="text-4xl" />
           </Button>
         </Link>

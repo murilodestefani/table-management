@@ -4,7 +4,12 @@ import { Foods } from "@components/Foods"; // Importa o componente Foods
 import { Header } from "@components/Header"; // Importa o componente Header
 import { Dashboard } from "@/components/Dashboard"; // Importa o componente Dashboard
 import { Divider, ButtonGroup, Button } from "@nextui-org/react"; // Importa componentes do NextUI
-import { Desk, UserSound, ForkKnife, PresentationChart } from "@phosphor-icons/react"; // Importa ícones
+import {
+  Desk,
+  UserSound,
+  ForkKnife,
+  PresentationChart,
+} from "@phosphor-icons/react"; // Importa ícones
 import { useState } from "react"; // Importa o hook useState
 
 // Componente para a página Home
@@ -15,7 +20,7 @@ export function Home() {
   >("dashboard");
 
   return (
-    <>
+    <div className="flex flex-col min-h-screen">
       {/* Cabeçalho da página */}
       <Header />
       <main className="flex-grow">
@@ -26,7 +31,7 @@ export function Home() {
         {activeComponent === "foods" && <Foods />}
       </main>
       {/* Rodapé da página */}
-      <footer className="fixed bottom-0 left-0 z-10 flex flex-col gap-1 bg-background dark:bg-foreground-50">
+      <footer className="mt-auto z-10 flex flex-col gap-1 bg-background dark:bg-foreground-50">
         {/* Divisor */}
         <Divider />
         {/* Grupo de botões para navegação entre os componentes */}
@@ -75,6 +80,6 @@ export function Home() {
           </Button>
         </ButtonGroup>
       </footer>
-    </>
+    </div>
   );
 }

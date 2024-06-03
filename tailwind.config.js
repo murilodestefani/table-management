@@ -9,9 +9,6 @@ export default {
   ],
   theme: {
     extend: {
-      height: {
-        custom: "calc(896px - 133px)",
-      },
       fontFamily: {
         inter: ['"Inter", sans-serif'],
       },
