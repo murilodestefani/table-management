@@ -7,7 +7,7 @@ import { Link } from "react-router-dom"; // Importa o componente Link do React R
 export function Welcome() {
   return (
     // Conteúdo da página de boas-vindas
-    <main className="relative h-svh w-full p-0">
+    <main className="relative h-dvh w-full p-0">
       {/* Camada de gradiente para sobrepor a imagem de fundo */}
       <div className="absolute inset-0 z-20 bg-gradient-to-b from-transparent to-black"></div>
       {/* Camada de opacidade para escurecer a imagem de fundo */}

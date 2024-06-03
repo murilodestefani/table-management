@@ -44,7 +44,7 @@ export function Login() {
   // Renderiza o componente de login
   return (
     // Conteúdo da página de login
-    <main className="flex h-svh flex-col items-center justify-center">
+    <main className="flex h-dvh flex-col items-center justify-center">
       <section className="flex h-full w-full flex-col items-center justify-center">
         {/* Formulário de login */}
         <form

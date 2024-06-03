@@ -6,7 +6,7 @@ import { Link } from "react-router-dom"; // Importa o componente Link do React R
 export function NotFound() {
   return (
     // Conteúdo da página
-    <main className="flex h-svh flex-col items-center justify-center gap-8">
+    <main className="flex h-dvh flex-col items-center justify-center gap-8">
       {/* Cabeçalho da página */}
       <header className="flex flex-col items-center text-primary">
         {/* Ícone de SmileyXEyes para representar um rosto feliz com olhos bem abertos */}
