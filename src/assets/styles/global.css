@@ -7,11 +7,11 @@
 }
 
 main {
-  @apply w-full p-4 md:max-w-[414px] md:max-h-svh overflow-hidden;
+  @apply w-full p-4 md:max-w-[414px] md:max-h-dvh overflow-hidden;
 }
 
 body {
-  @apply md:w-full md:h-svh md:flex md:items-center md:justify-center;
+  @apply md:w-full md:h-dvh md:flex md:items-center md:justify-center;
 }
 
 #root {
