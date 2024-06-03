@@ -9,7 +9,7 @@ import {
   updateDoc,
   deleteDoc,
 } from "firebase/firestore";
-import { Chair, Hash, Pencil, Trash } from "@phosphor-icons/react";
+import { Chair, Desk, Hash, Pencil, Trash } from "@phosphor-icons/react";
 import {
   Table,
   Switch,
@@ -23,6 +23,7 @@ import {
   Chip,
   Select,
   SelectItem,
+  Spinner,
   Input,
 } from "@nextui-org/react";
 
@@ -156,7 +157,20 @@ export const Tables: React.FC = () => {
   }, [editingTable]);
 
   return (
-    <section className="flex flex-col gap-4">
+    <section className="flex flex-col gap-6">
+      {/* Cabeçalho da seção de Mesas */}
+      <header className="flex items-center justify-center gap-1">
+        <Chip
+          color={"primary"}
+          size="lg"
+          variant="flat"
+          startContent={<Desk weight="fill" />}
+        >
+          <h1>Mesas</h1>
+        </Chip>
+      </header>
+
+      {/* Formulário para adicionar ou editar uma mesa */}
       <div className="flex gap-4">
         <Input
           type="text"
@@ -179,6 +193,7 @@ export const Tables: React.FC = () => {
         />
       </div>
 
+      {/* Opções para mesa reservada e cliente associado */}
       <div className="flex min-h-14 items-center justify-between gap-4">
         <Switch
           size="sm"
@@ -188,6 +203,7 @@ export const Tables: React.FC = () => {
           Reservada?
         </Switch>
 
+        {/* Select para escolher o cliente associado à mesa */}
         {isReserved && (
           <Select
             label="Selecione um Cliente"
@@ -203,6 +219,7 @@ export const Tables: React.FC = () => {
         )}
       </div>
 
+      {/* Botão para adicionar ou atualizar uma mesa */}
       <Button
         color="primary"
         size="lg"
@@ -216,6 +233,7 @@ export const Tables: React.FC = () => {
         {editingTable ? "Atualizar" : "Cadastrar"}
       </Button>
 
+      {/* Tabela para listar as mesas */}
       <Table>
         <TableHeader>
           <TableColumn>Nº</TableColumn>
@@ -224,7 +242,10 @@ export const Tables: React.FC = () => {
           <TableColumn>AÇÕES</TableColumn>
         </TableHeader>
 
-        <TableBody emptyContent={"Dados sendo carregados ou não há dados para exibir"}>
+        {/* Corpo da tabela */}
+        <TableBody
+          emptyContent={<Spinner label="Carregando..." color="primary" />}
+        >
           {tables.map((table) => (
             <TableRow key={table.id}>
               <TableCell>{table.number}</TableCell>
@@ -244,6 +265,7 @@ export const Tables: React.FC = () => {
                 )}
               </TableCell>
               <TableCell>
+                {/* Botões para editar e deletar uma mesa */}
                 <div className="relative flex items-center gap-2">
                   <Tooltip content="Editar">
                     <span className="cursor-pointer text-lg text-default-400 active:opacity-50">

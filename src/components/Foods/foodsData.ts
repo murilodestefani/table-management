@@ -1,8 +1,9 @@
+// Definição da constante foods, que armazena uma lista de objetos representando pratos de comida
 export const foods = [
   {
-    name: "Spaghetti alla Carbonara",
-    img: "/images/foods/SpaghettiallaCarbonara.jpg",
-    price: 35.0,
+    name: "Spaghetti alla Carbonara", // Nome do prato
+    img: "/images/foods/SpaghettiallaCarbonara.jpg", // Caminho da imagem do prato
+    price: 35.0, // Preço do prato
   },
   {
     name: "Filet Mignon com Molho de Mostarda Dijon",

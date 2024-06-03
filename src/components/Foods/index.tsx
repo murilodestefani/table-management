@@ -1,16 +1,22 @@
 import { foods } from "@components/Foods/foodsData";
-import { Card, CardBody, CardFooter, Image } from "@nextui-org/react";
+import { Card, CardBody, CardFooter, Chip, Image } from "@nextui-org/react";
 import { ForkKnife } from "@phosphor-icons/react";
 
 export function Foods() {
   return (
-    <section>
-      <header className="mb-2 flex items-center justify-center gap-1">
-        <ForkKnife className="text-3xl" weight="bold" />
-        <h1 className="text-center text-4xl font-extrabold">Cardápio</h1>
+    <section className="flex flex-col gap-6">
+      <header className="flex items-center justify-center gap-1">
+        <Chip
+          color={"primary"}
+          size="lg"
+          variant="flat"
+          startContent={<ForkKnife weight="fill" />}
+        >
+          <h1>Cardápio</h1>
+        </Chip>
       </header>
 
-      <div className="overflow-y-auto h-full z-10">
+      <div className="z-10 h-full overflow-y-auto">
         {foods.map((food, index) => (
           <article className="block bg-transparent p-2">
             <Card className="w-full" shadow="sm" key={index}>

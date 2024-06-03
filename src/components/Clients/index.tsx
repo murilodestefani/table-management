@@ -2,6 +2,7 @@ import { ClientProps } from "@/interfaces";
 import { db } from "@/services/firebaseConnection";
 import {
   Button,
+  Chip,
   Input,
   Table,
   TableBody,
@@ -10,12 +11,14 @@ import {
   TableHeader,
   TableRow,
   Tooltip,
+  Spinner,
 } from "@nextui-org/react";
 import {
   IdentificationCard,
   Pencil,
   Phone,
   Trash,
+  UserSound,
 } from "@phosphor-icons/react";
 import {
   getDocs,
@@ -28,11 +31,13 @@ import {
 import { useEffect, useState } from "react";
 
 export const Clients: React.FC = () => {
+  // Estados para armazenar dados dos clientes, campos de entrada e cliente em edição
   const [clients, setClients] = useState<ClientProps[]>([]);
   const [name, setName] = useState<string>("");
   const [telephone, setTelephone] = useState<string>("");
   const [editingClient, setEditingClient] = useState<ClientProps | null>(null);
 
+  // Função assíncrona para buscar clientes no Firebase Firestore
   const fetchClients = async () => {
     try {
       const querySnapshot = await getDocs(collection(db, "clients"));
@@ -49,6 +54,7 @@ export const Clients: React.FC = () => {
     }
   };
 
+  // Função para adicionar um novo cliente
   const handleAddClient = async () => {
     if (!name || !telephone) {
       alert("Preencha os campos vazios");
@@ -73,6 +79,7 @@ export const Clients: React.FC = () => {
     }
   };
 
+  // Função para atualizar os dados de um cliente
   const handleUpdateClient = async (id: string) => {
     if (!name || !telephone) {
       alert("Preencha os campos vazios");
@@ -95,6 +102,7 @@ export const Clients: React.FC = () => {
     }
   };
 
+  // Função para deletar um cliente
   const handleDeleteClient = async (id: string) => {
     try {
       const clientDoc = doc(db, "clients", id);
@@ -105,15 +113,18 @@ export const Clients: React.FC = () => {
     }
   };
 
+  // Função para resetar os campos de entrada
   const resetForm = () => {
     setName("");
     setTelephone("");
   };
 
+  // Efeito para buscar clientes quando o componente é montado
   useEffect(() => {
     fetchClients();
   }, []);
 
+  // Efeito para atualizar os campos de entrada quando o cliente em edição é alterado
   useEffect(() => {
     if (editingClient) {
       setName(editingClient.name);
@@ -123,75 +134,91 @@ export const Clients: React.FC = () => {
     }
   }, [editingClient]);
 
+  // Renderização do componente de Clientes
   return (
-    <section>
-      <div className="flex flex-col gap-4">
-        <Input
-          type="text"
-          label="Nome do Cliente"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          startContent={
-            <IdentificationCard className="pointer-events-none flex-shrink-0 text-2xl text-default-400" />
-          }
-        />
-
-        <Input
-          type="text"
-          label="Telefone do Cliente"
-          value={telephone}
-          onChange={(e) => setTelephone(e.target.value)}
-          startContent={
-            <Phone className="pointer-events-none flex-shrink-0 text-2xl text-default-400" />
-          }
-        />
-
-        <Button
-          color="primary"
+    <section className="flex flex-col gap-6">
+      {/* Cabeçalho */}
+      <header className="flex items-center justify-center gap-1">
+        <Chip
+          color={"primary"}
           size="lg"
-          fullWidth
-          onClick={
-            editingClient
-              ? () => handleUpdateClient(editingClient.id)
-              : handleAddClient
-          }
+          variant="flat"
+          startContent={<UserSound weight="fill" />}
         >
-          {editingClient ? "Atualizar" : "Cadastrar"}
-        </Button>
+          <h1>Clientes</h1>
+        </Chip>
+      </header>
 
-        <Table>
-          <TableHeader>
-            <TableColumn>NOME</TableColumn>
-            <TableColumn>TELEFONE</TableColumn>
-            <TableColumn>AÇÕES</TableColumn>
-          </TableHeader>
+      {/* Campos de entrada para nome e telefone do cliente */}
+      <Input
+        type="text"
+        label="Nome do Cliente"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        startContent={
+          <IdentificationCard className="pointer-events-none flex-shrink-0 text-2xl text-default-400" />
+        }
+      />
 
-          <TableBody
-            emptyContent={"Dados sendo carregados ou não há dados para exibir"}
-          >
-            {clients.map((client) => (
-              <TableRow key={client.id}>
-                <TableCell>{client.name}</TableCell>
-                <TableCell>{client.telephone}</TableCell>
-                <TableCell>
-                  <div className="relative flex items-center gap-2">
-                    <Tooltip content="Editar">
-                      <span className="cursor-pointer text-lg text-default-400 active:opacity-50">
-                        <Pencil onClick={() => setEditingClient(client)} />
-                      </span>
-                    </Tooltip>
-                    <Tooltip color="danger" content="Deletar">
-                      <span className="cursor-pointer text-lg text-danger active:opacity-50">
-                        <Trash onClick={() => handleDeleteClient(client.id)} />
-                      </span>
-                    </Tooltip>
-                  </div>
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </div>
+      <Input
+        type="text"
+        label="Telefone do Cliente"
+        value={telephone}
+        onChange={(e) => setTelephone(e.target.value)}
+        startContent={
+          <Phone className="pointer-events-none flex-shrink-0 text-2xl text-default-400" />
+        }
+      />
+
+      {/* Botão para adicionar ou atualizar um cliente */}
+      <Button
+        color="primary"
+        size="lg"
+        fullWidth
+        onClick={
+          editingClient
+            ? () => handleUpdateClient(editingClient.id)
+            : handleAddClient
+        }
+      >
+        {editingClient ? "Atualizar" : "Cadastrar"}
+      </Button>
+
+      {/* Tabela para exibir os clientes cadastrados */}
+      <Table>
+        <TableHeader>
+          <TableColumn>NOME</TableColumn>
+          <TableColumn>TELEFONE</TableColumn>
+          <TableColumn>AÇÕES</TableColumn>
+        </TableHeader>
+
+        <TableBody
+          emptyContent={<Spinner label="Carregando..." color="primary" />}
+        >
+          {/* Mapeamento dos clientes para renderização das linhas da tabela */}
+          {clients.map((client) => (
+            <TableRow key={client.id}>
+              <TableCell>{client.name}</TableCell>
+              <TableCell>{client.telephone}</TableCell>
+              {/* Coluna de ações com botões para editar e deletar o cliente */}
+              <TableCell>
+                <div className="relative flex items-center gap-2">
+                  <Tooltip content="Editar">
+                    <span className="cursor-pointer text-lg text-default-400 active:opacity-50">
+                      <Pencil onClick={() => setEditingClient(client)} />
+                    </span>
+                  </Tooltip>
+                  <Tooltip color="danger" content="Deletar">
+                    <span className="cursor-pointer text-lg text-danger active:opacity-50">
+                      <Trash onClick={() => handleDeleteClient(client.id)} />
+                    </span>
+                  </Tooltip>
+                </div>
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
     </section>
   );
 };
