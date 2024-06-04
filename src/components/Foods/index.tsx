@@ -16,7 +16,7 @@ export function Foods() {
         </Chip>
       </header>
 
-      <div className="z-10 h-full overflow-y-auto">
+      <div className="z-10 h-full md:max-h-[440px] overflow-y-auto">
         {foods.map((food, index) => (
           <article className="block bg-transparent p-2">
             <Card className="w-full" shadow="sm" key={index}>

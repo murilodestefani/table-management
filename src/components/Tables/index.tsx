@@ -234,7 +234,7 @@ export const Tables: React.FC = () => {
       </Button>
 
       {/* Tabela para listar as mesas */}
-      <Table>
+      <Table isStriped className="md:max-h-40">
         <TableHeader>
           <TableColumn>Nº</TableColumn>
           <TableColumn>ASSENTOS</TableColumn>

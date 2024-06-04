@@ -185,7 +185,7 @@ export const Clients: React.FC = () => {
       </Button>
 
       {/* Tabela para exibir os clientes cadastrados */}
-      <Table isStriped className="">
+      <Table isStriped className="md:max-h-56">
         <TableHeader>
           <TableColumn>NOME</TableColumn>
           <TableColumn>TELEFONE</TableColumn>

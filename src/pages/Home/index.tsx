@@ -95,7 +95,7 @@ export function Home() {
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           />
         </NavbarContent>
-        <NavbarMenu className="max-w-[414px] mx-auto">
+        <NavbarMenu className="md:max-w-[414px] md:mx-auto">
           {menuItems.map((item, index) => (
             <NavbarMenuItem key={`${item}-${index}`}>
               <Link className="w-full" href="#">
