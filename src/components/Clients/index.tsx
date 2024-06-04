@@ -171,18 +171,24 @@ export const Clients: React.FC = () => {
       />
 
       {/* Botão para adicionar ou atualizar um cliente */}
-      <Button
-        color="primary"
-        size="lg"
-        fullWidth
-        onClick={
-          editingClient
-            ? () => handleUpdateClient(editingClient.id)
-            : handleAddClient
-        }
-      >
-        {editingClient ? "Atualizar" : "Cadastrar"}
-      </Button>
+      <div className="flex flex-col items-center justify-center gap-3">
+        <Button
+          color="primary"
+          size="lg"
+          fullWidth
+          onClick={
+            editingClient
+              ? () => handleUpdateClient(editingClient.id)
+              : handleAddClient
+          }
+        >
+          {editingClient ? "Atualizar" : "Cadastrar"}
+        </Button>
+
+        <Button className="w-fit" size="sm" onClick={resetForm}>
+          Limpar
+        </Button>
+      </div>
 
       {/* Tabela para exibir os clientes cadastrados */}
       <Table isStriped className="md:max-h-56">
@@ -193,7 +199,8 @@ export const Clients: React.FC = () => {
         </TableHeader>
 
         <TableBody
-          emptyContent={<Spinner label="Carregando..." color="primary" />}>
+          emptyContent={<Spinner label="Carregando..." color="primary" />}
+        >
           {/* Mapeamento dos clientes para renderização das linhas da tabela */}
           {clients.map((client) => (
             <TableRow key={client.id}>
