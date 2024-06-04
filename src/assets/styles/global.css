@@ -15,7 +15,7 @@ body {
 }
 
 #root {
-  @apply md:border-2 md:rounded-xl
+  @apply md:border-1 md:rounded-xl;
 }
 
 
