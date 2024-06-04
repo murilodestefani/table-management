@@ -173,7 +173,10 @@ export const Tables: React.FC = () => {
       {/* Formulário para adicionar ou editar uma mesa */}
       <div className="flex gap-4">
         <Input
-          type="text"
+          type="number"
+          min={0}
+          pattern="[0-9]"
+          inputMode="numeric"
           label="Número da Mesa"
           value={number}
           onChange={(e) => setNumber(e.target.value)}
@@ -183,7 +186,11 @@ export const Tables: React.FC = () => {
         />
 
         <Input
-          type="text"
+          type="number"
+          max={6}
+          min={0}
+          pattern="[0-9]"
+          inputMode="numeric"
           label="Assentos"
           value={seats}
           onChange={(e) => setSeats(e.target.value)}
@@ -220,18 +227,24 @@ export const Tables: React.FC = () => {
       </div>
 
       {/* Botão para adicionar ou atualizar uma mesa */}
-      <Button
-        color="primary"
-        size="lg"
-        fullWidth
-        onClick={
-          editingTable
-            ? () => handleUpdateTable(editingTable.id)
-            : handleAddTable
-        }
-      >
-        {editingTable ? "Atualizar" : "Cadastrar"}
-      </Button>
+      <div className="flex flex-col items-center justify-center gap-3">
+        <Button
+          color="primary"
+          size="lg"
+          fullWidth
+          onClick={
+            editingTable
+              ? () => handleUpdateTable(editingTable.id)
+              : handleAddTable
+          }
+        >
+          {editingTable ? "Atualizar" : "Cadastrar"}
+        </Button>
+
+        <Button className="w-fit" size="sm" onClick={resetForm}>
+          Limpar
+        </Button>
+      </div>
 
       {/* Tabela para listar as mesas */}
       <Table isStriped className="md:max-h-40">
