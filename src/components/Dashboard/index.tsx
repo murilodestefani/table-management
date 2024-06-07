@@ -1,5 +1,5 @@
 import { collection, getDocs } from "firebase/firestore"; // Importação das funções collection e getDocs do Firestore
-import { db } from "@/services/firebaseConnection"; // Importação da conexão com o Firebase
+import { db } from "@services/firebaseConnection"; // Importação da conexão com o Firebase
 import { useEffect, useState } from "react"; // Importação do hook useEffect e useState do React
 import { Chip, Image } from "@nextui-org/react"; // Importação de componentes de UI do Next.js
 import {

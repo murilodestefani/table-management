@@ -29,7 +29,7 @@
       "@pages/*": ["./pages/*"],
       "@routes/*": ["./routes/*"],
       "@context/*": ["./context/*"],
-      "@service/*": ["./services/*"],
+      "@services/*": ["./services/*"],
       "@styles/*": ["./assets/styles/*"],
       "@images/*": ["./assets/styles/images/*"]
     }

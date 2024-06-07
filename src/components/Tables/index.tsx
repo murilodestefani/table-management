@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { TableProps, ClientProps } from "@/interfaces";
-import { db } from "@/services/firebaseConnection";
+import { db } from "@services/firebaseConnection";
 import {
   getDocs,
   collection,

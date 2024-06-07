@@ -21,10 +21,10 @@ export function Welcome() {
       {/* Conteúdo principal da página */}
       <div className="relative z-50 flex h-full flex-col items-center justify-end gap-4 bg-opacity-50 p-4 text-center">
         {/* Título da página */}
-        <p className="text-4xl font-light text-white">
+        <h1 className="text-4xl font-light text-white">
           <b className="font-semibold">Sem preocupação</b>, faça reservas com
-          <h1 className="font-semibold">TableEase</h1>
-        </p>
+          <b className="font-semibold">TableEase</b>
+        </h1>
         {/* Descrição da página */}
         <span className="font-extralight text-white">
           TableEase vem para facilitar a reserva de mesas.

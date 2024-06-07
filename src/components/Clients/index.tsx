@@ -1,5 +1,5 @@
 import { ClientProps } from "@/interfaces";
-import { db } from "@/services/firebaseConnection";
+import { db } from "@services/firebaseConnection";
 import {
   Button,
   Chip,

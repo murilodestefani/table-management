@@ -1,7 +1,7 @@
 import { Tables } from "@components/Tables"; // Importa o componente Tables
 import { Clients } from "@components/Clients"; // Importa o componente Clients
 import { Foods } from "@components/Foods"; // Importa o componente Foods
-import { Dashboard } from "@/components/Dashboard"; // Importa o componente Dashboard
+import { Dashboard } from "@components/Dashboard"; // Importa o componente Dashboard
 import {
   Avatar,
   Link,
@@ -18,8 +18,8 @@ import {
   Sun,
 } from "@phosphor-icons/react"; // Importa ícones
 import { useState } from "react"; // Importa o hook useState
-import { useAuth } from "@/context/AuthContext";
-import { userPhoto } from "@/context/userData";
+import { useAuth } from "@context/AuthContext";
+import { userPhoto } from "@context/userData";
 import { useTheme } from "next-themes";
 import React from "react";
 
