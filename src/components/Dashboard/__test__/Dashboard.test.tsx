@@ -6,7 +6,7 @@ import { Dashboard } from "@components/Dashboard";
 test("renderiza o componente Dashboard com contagem de mesas e clientes", async () => {
   // Definindo contagens simuladas para mesas e clientes
   const mockTablesCount = 10;
-  const mockClientsCount = 20;
+  const mockClientsCount = 9;
 
   // Renderiza o componente Dashboard
   render(<Dashboard />);
