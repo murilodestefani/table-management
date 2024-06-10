@@ -1,4 +1,3 @@
-import React from "react";
 import ReactDOM from "react-dom/client"; // Importa o método para criar a raiz do React
 import "@styles/global.css"; // Importa o arquivo de estilos globais
 import { RouterProvider } from "react-router-dom"; // Importa o provedor de roteador para React Router
@@ -8,13 +7,11 @@ import { NextUIProvider } from "@nextui-org/react"; // Importa o provedor de UI 
 import { ThemeProvider as NextThemesProvider } from "next-themes"; // Importa o provedor de temas do Next Themes
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
-    <NextUIProvider>
-      <NextThemesProvider attribute="class" defaultTheme="light">
-        <AuthProvider>
-          <RouterProvider router={router} />
-        </AuthProvider>
-      </NextThemesProvider>
-    </NextUIProvider>
-  </React.StrictMode>,
+  <NextUIProvider>
+    <NextThemesProvider attribute="class" defaultTheme="light">
+      <AuthProvider>
+        <RouterProvider router={router} />
+      </AuthProvider>
+    </NextThemesProvider>
+  </NextUIProvider>,
 );

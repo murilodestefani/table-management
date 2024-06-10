@@ -32,6 +32,7 @@ export function Home() {
 
   const { setIsAuthenticated } = useAuth(); // Acessando contexto de autenticação
   const { theme, setTheme } = useTheme(); // Acessando hook de tema
+  
 
   const { email } = useAuth(); // Obtendo email do usuário do contexto de autenticação
 

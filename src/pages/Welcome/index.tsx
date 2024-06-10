@@ -1,10 +1,25 @@
 import welcome from "@images/welcome.jpg"; // Importa a imagem de boas-vindas
 import { Button } from "@nextui-org/react"; // Importa o componente Button do NextUI
 import { ArrowRight } from "@phosphor-icons/react"; // Importa o ícone de seta direita
+import { useTheme } from "next-themes";
+import { useEffect } from "react";
 import { Link } from "react-router-dom"; // Importa o componente Link do React Router
 
 // Componente para a página de boas-vindas
 export function Welcome() {
+  const getCurrentTheme = window.matchMedia(
+    "(prefers-color-scheme: dark)",
+  ).matches;
+  const { setTheme } = useTheme();
+
+  useEffect(() => {
+    if (getCurrentTheme) {
+      setTheme("dark");
+    } else {
+      setTheme("light");
+    }
+  });
+
   return (
     // Conteúdo da página de boas-vindas
     <main className="relative h-dvh w-full p-0">
