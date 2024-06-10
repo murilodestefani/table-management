@@ -13,11 +13,8 @@ import {
   NavbarMenuToggle,
   Switch,
 } from "@nextui-org/react"; // Importa componentes do NextUI
-import {
-  Moon,
-  Sun,
-} from "@phosphor-icons/react"; // Importa ícones
-import { useState } from "react"; // Importa o hook useState
+import { Moon, Sun } from "@phosphor-icons/react"; // Importa ícones
+import { useEffect, useState } from "react"; // Importa o hook useState
 import { useAuth } from "@context/AuthContext";
 import { userPhoto } from "@context/userData";
 import { useTheme } from "next-themes";
@@ -32,7 +29,9 @@ export function Home() {
 
   const { setIsAuthenticated } = useAuth(); // Acessando contexto de autenticação
   const { theme, setTheme } = useTheme(); // Acessando hook de tema
-  
+  const getCurrentTheme = window.matchMedia(
+    "(prefers-color-scheme: dark)",
+  ).matches;
 
   const { email } = useAuth(); // Obtendo email do usuário do contexto de autenticação
 
@@ -57,16 +56,25 @@ export function Home() {
     <Link onClick={() => setActiveComponent("clients")}>Clientes</Link>,
     <Link onClick={() => setActiveComponent("foods")}>Cardápio</Link>,
     <Link onClick={() => setActiveComponent("dashboard")}>Dashboard</Link>,
-    <Link color="danger" onClick={handleSignOut}>Log Out</Link>,
+    <Link color="danger" onClick={handleSignOut}>
+      Log Out
+    </Link>,
     <Switch
       onChange={handleThemeChange}
-      defaultSelected
       size="sm"
       color="default"
       startContent={<Moon weight="fill" />}
       endContent={<Sun weight="fill" />}
     ></Switch>,
   ];
+
+  useEffect(() => {
+    if (getCurrentTheme) {
+      setTheme("dark");
+    } else {
+      setTheme("light");
+    }
+  });
 
   return (
     <div className="flex min-h-dvh flex-col">
@@ -96,7 +104,7 @@ export function Home() {
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           />
         </NavbarContent>
-        <NavbarMenu className="md:max-w-[414px] md:mx-auto">
+        <NavbarMenu className="md:mx-auto md:max-w-[414px]">
           {menuItems.map((item, index) => (
             <NavbarMenuItem key={`${item}-${index}`}>
               <Link className="w-full" href="#">
