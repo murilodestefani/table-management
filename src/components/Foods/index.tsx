@@ -1,44 +1,34 @@
 import { foods } from "@components/Foods/foodsData";
-import { Card, CardBody, CardFooter, Chip, Image } from "@nextui-org/react";
-import { ForkKnife } from "@phosphor-icons/react";
+import {
+  Card,
+  CardBody,
+  CardFooter,
+  ScrollShadow,
+} from "@nextui-org/react";
 
 export function Foods() {
   return (
-    <section className="flex flex-col gap-6">
-      <header className="flex items-center justify-center gap-1">
-        <Chip
-          color={"primary"}
-          size="lg"
-          variant="flat"
-          startContent={<ForkKnife weight="fill" />}
-        >
-          <h1>Cardápio</h1>
-        </Chip>
-      </header>
-
-      <div className="z-10 h-full md:max-h-[440px] overflow-y-auto">
+    <main className="flex max-h-full w-full gap-4 p-4">
+      <ScrollShadow
+        hideScrollBar
+        className="flex max-h-[600px] flex-wrap justify-center gap-4 overflow-auto"
+      >
         {foods.map((food, index) => (
-          <article className="block bg-transparent p-2">
-            <Card className="w-full" shadow="sm" key={index}>
-              <CardBody className="overflow-visible p-0">
-                <Image
-                  isZoomed
-                  shadow="sm"
-                  radius="lg"
-                  width="100%"
-                  alt={food.name}
-                  className="h-[200px] w-full object-cover"
-                  src={food.img}
-                />
-              </CardBody>
-              <CardFooter className="justify-between text-small">
-                <b className="line-clamp-1">{food.name}</b>
-                <p className="text-default-500">R$ {food.price}</p>
-              </CardFooter>
-            </Card>
-          </article>
+          <Card className="aspect-square w-60" shadow="sm" key={index}>
+            <CardBody className="h-full w-full overflow-visible p-0">
+              <img
+                alt={food.name}
+                src={food.img}
+                className="h-full w-full object-cover"
+              />
+            </CardBody>
+            <CardFooter className="flex items-center justify-between text-sm">
+              <b className="line-clamp-1 w-[80%]">{food.name}</b>
+              <p className="text-tiny text-default-500 flex-growtext-end">R$ {food.price}</p>
+            </CardFooter>
+          </Card>
         ))}
-      </div>
-    </section>
+      </ScrollShadow>
+    </main>
   );
 }

@@ -13,6 +13,9 @@ export default {
         inter: ['"Inter", sans-serif'],
       },
     },
+    backgroundImage: {
+      restaurant: "url('/images/restaurant.jpg')",
+    },
   },
   darkMode: "class",
   plugins: [
@@ -33,8 +36,8 @@ export default {
               DEFAULT: "#FF5C01",
             },
             focus: "#FF5C01",
-          }
-        }
+          },
+        },
       },
     }),
   ],

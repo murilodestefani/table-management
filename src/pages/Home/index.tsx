@@ -1,126 +1,128 @@
-import { Tables } from "@components/Tables"; // Importa o componente Tables
-import { Clients } from "@components/Clients"; // Importa o componente Clients
-import { Foods } from "@components/Foods"; // Importa o componente Foods
-import { Dashboard } from "@components/Dashboard"; // Importa o componente Dashboard
+import { Tables } from "@components/Tables";
+import { Clients } from "@components/Clients";
+import { Foods } from "@components/Foods";
+import { Dashboard } from "@components/Dashboard";
+import { Avatar, Button, Divider, Switch } from "@nextui-org/react";
 import {
-  Avatar,
-  Link,
-  Navbar,
-  NavbarBrand,
-  NavbarContent,
-  NavbarMenu,
-  NavbarMenuItem,
-  NavbarMenuToggle,
-  Switch,
-} from "@nextui-org/react"; // Importa componentes do NextUI
-import { Moon, Sun } from "@phosphor-icons/react"; // Importa ícones
-import { useEffect, useState } from "react"; // Importa o hook useState
+  Desk,
+  Gauge,
+  Hamburger,
+  Moon,
+  SignOut,
+  Sun,
+  User,
+} from "@phosphor-icons/react";
+import { useState } from "react";
 import { useAuth } from "@context/AuthContext";
 import { userPhoto } from "@context/userData";
 import { useTheme } from "next-themes";
-import React from "react";
+import { Logo } from "@/components/Logo";
 
-// Componente para a página Home
 export function Home() {
-  // Estado para armazenar o componente ativo
   const [activeComponent, setActiveComponent] = useState<
     "tables" | "clients" | "foods" | "dashboard"
   >("dashboard");
+  const { setIsAuthenticated, email } = useAuth();
+  const { theme, setTheme } = useTheme();
 
-  const { setIsAuthenticated } = useAuth(); // Acessando contexto de autenticação
-  const { theme, setTheme } = useTheme(); // Acessando hook de tema
-  const getCurrentTheme = window.matchMedia(
-    "(prefers-color-scheme: dark)",
-  ).matches;
-
-  const { email } = useAuth(); // Obtendo email do usuário do contexto de autenticação
-
-  // Função para lidar com o logout
   const handleSignOut = () => {
-    setIsAuthenticated(false); // Definindo status de autenticação como falso
+    setIsAuthenticated(false);
   };
 
-  // Função para lidar com a mudança de tema
   const handleThemeChange = () => {
-    if (theme === "light") {
-      setTheme("dark"); // Mudar para o tema escuro se estiver atualmente claro
-    } else {
-      setTheme("light"); // Mudar para o tema claro se estiver atualmente escuro
-    }
+    setTheme(theme === "light" ? "dark" : "light");
   };
-
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-
-  const menuItems = [
-    <Link onClick={() => setActiveComponent("tables")}>Mesas</Link>,
-    <Link onClick={() => setActiveComponent("clients")}>Clientes</Link>,
-    <Link onClick={() => setActiveComponent("foods")}>Cardápio</Link>,
-    <Link onClick={() => setActiveComponent("dashboard")}>Dashboard</Link>,
-    <Link color="danger" onClick={handleSignOut}>
-      Log Out
-    </Link>,
-    <Switch
-      onChange={handleThemeChange}
-      size="sm"
-      color="default"
-      startContent={<Moon weight="fill" />}
-      endContent={<Sun weight="fill" />}
-    ></Switch>,
-  ];
-
-  useEffect(() => {
-    if (getCurrentTheme) {
-      setTheme("dark");
-    } else {
-      setTheme("light");
-    }
-  });
 
   return (
-    <div className="flex min-h-dvh flex-col">
-      {/* Cabeçalho da página */}
-      <Navbar
-        className="dark:bg-foreground-200"
-        onMenuOpenChange={setIsMenuOpen}
-      >
-        {/* Componente Navbar */}
-        <NavbarBrand className="flex gap-2">
-          {/* Seção da marca do Navbar com avatar e informações do usuário */}
-
+    <main className="flex w-full">
+      <nav className="flex min-h-full w-1/4 flex-col gap-4 bg-content1 p-4">
+        <Logo />
+        <Divider />
+        <section className="flex w-full flex-col items-center justify-center gap-4">
           <Avatar
-            size="sm"
-            isBordered
             color="primary"
-            src={email ? userPhoto(email) : undefined} // Exibindo avatar do usuário se o email estiver disponível
+            isBordered
+            size="lg"
+            src={email ? userPhoto(email) : undefined}
           />
-          <div className="flex flex-col">
-            <span className="text-xs">Bem vindo(a) 👋</span> {/* Saudação */}
-            <p className="line-clamp-1 text-xs font-semibold">{email}</p>{" "}
-            {/* Exibindo email do usuário */}
-          </div>
-        </NavbarBrand>
-        <NavbarContent justify="end" className="flex flex-1 gap-1">
-          <NavbarMenuToggle
-            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          <p className="line-clamp-1 text-xs font-bold">{email}</p>
+          <Button
+            onClick={handleSignOut}
+            color="default"
+            variant="ghost"
+            radius="sm"
+            fullWidth
+            startContent={<SignOut />}
+            className="border"
+          >
+            Logout
+          </Button>
+        </section>
+        <Divider />
+        <section className="flex w-full flex-grow flex-col items-center">
+          <Button
+            onClick={() => setActiveComponent("tables")}
+            variant="light"
+            radius="sm"
+            fullWidth
+            size="lg"
+            startContent={<Desk className="text-default-400" weight="fill" />}
+            className="justify-start"
+          >
+            Mesas
+          </Button>
+          <Button
+            onClick={() => setActiveComponent("clients")}
+            variant="light"
+            radius="sm"
+            fullWidth
+            size="lg"
+            startContent={<User className="text-default-400" weight="fill" />}
+            className="justify-start"
+          >
+            Clientes
+          </Button>
+          <Button
+            onClick={() => setActiveComponent("foods")}
+            variant="light"
+            radius="sm"
+            fullWidth
+            size="lg"
+            startContent={
+              <Hamburger className="text-default-400" weight="fill" />
+            }
+            className="justify-start"
+          >
+            Cardápio
+          </Button>
+          <Button
+            onClick={() => setActiveComponent("dashboard")}
+            variant="light"
+            radius="sm"
+            fullWidth
+            size="lg"
+            startContent={<Gauge className="text-default-400" weight="fill" />}
+            className="justify-start"
+          >
+            Dashboard
+          </Button>
+        </section>
+        <section className="flex w-full flex-col items-center justify-center">
+          <Switch
+            onChange={handleThemeChange}
+            size="sm"
+            color="default"
+            startContent={<Moon weight="fill" />}
+            endContent={<Sun weight="fill" />}
           />
-        </NavbarContent>
-        <NavbarMenu className="md:mx-auto md:max-w-[414px]">
-          {menuItems.map((item, index) => (
-            <NavbarMenuItem key={`${item}-${index}`}>
-              <Link className="w-full" href="#">
-                {item}
-              </Link>
-            </NavbarMenuItem>
-          ))}
-        </NavbarMenu>
-      </Navbar>
-      <main className="flex-grow overflow-x-auto">
-        {/* Renderiza o componente ativo com base no estado */}
+        </section>
+      </nav>
+      <div className="flex min-h-svh w-full items-center justify-center bg-default">
         {activeComponent === "dashboard" && <Dashboard />}
         {activeComponent === "tables" && <Tables />}
         {activeComponent === "clients" && <Clients />}
         {activeComponent === "foods" && <Foods />}
-      </main>
-    </div>
+      </div>
+    </main>
   );
 }

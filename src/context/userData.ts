@@ -1,4 +1,3 @@
-// Função que retorna o caminho da foto do usuário com base no email
 export function userPhoto(email: string): string {
   switch (email) {
     case "cartbens@hotmail.com":
