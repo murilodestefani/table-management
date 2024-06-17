@@ -6,16 +6,8 @@
   @apply font-inter;
 }
 
-main {
-  @apply w-full p-4 md:max-w-[414px] md:max-h-dvh overflow-hidden;
-}
-
 body {
-  @apply md:w-full md:h-dvh md:flex md:items-center md:justify-center;
-}
-
-#root {
-  @apply md:border-1 md:rounded-xl;
+  @apply bg-background;
 }
 
 

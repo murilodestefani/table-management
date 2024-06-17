@@ -9,7 +9,7 @@ import {
   updateDoc,
   deleteDoc,
 } from "firebase/firestore";
-import { Chair, Desk, Hash, Pencil, Trash } from "@phosphor-icons/react";
+import { Chair, Hash, Pencil, Trash } from "@phosphor-icons/react";
 import {
   Table,
   Switch,
@@ -39,13 +39,10 @@ export const Tables: React.FC = () => {
   const fetchTables = async () => {
     try {
       const querySnapshot = await getDocs(collection(db, "tables"));
-      const tablesData: TableProps[] = querySnapshot.docs.map(
-        (doc) =>
-          ({
-            id: doc.id,
-            ...doc.data(),
-          }) as TableProps,
-      );
+      const tablesData: TableProps[] = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      })) as TableProps[];
       setTables(tablesData);
     } catch (error) {
       console.error("Error fetching tables: ", error);
@@ -55,13 +52,10 @@ export const Tables: React.FC = () => {
   const fetchClients = async () => {
     try {
       const querySnapshot = await getDocs(collection(db, "clients"));
-      const clientsData: ClientProps[] = querySnapshot.docs.map(
-        (doc) =>
-          ({
-            id: doc.id,
-            ...doc.data(),
-          }) as ClientProps,
-      );
+      const clientsData: ClientProps[] = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      })) as ClientProps[];
       setClients(clientsData);
     } catch (error) {
       console.error("Error fetching clients: ", error);
@@ -157,97 +151,88 @@ export const Tables: React.FC = () => {
   }, [editingTable]);
 
   return (
-    <section className="flex flex-col gap-6">
-      {/* Cabeçalho da seção de Mesas */}
-      <header className="flex items-center justify-center gap-1">
-        <Chip
-          color={"primary"}
-          size="lg"
-          variant="flat"
-          startContent={<Desk weight="fill" />}
-        >
-          <h1>Mesas</h1>
-        </Chip>
-      </header>
+    <main className="flex max-h-full w-full gap-4 p-4">
+      <form className="flex h-fit w-3/5 flex-col gap-6 rounded-lg bg-content1 p-6">
+        <div className="flex gap-4">
+          <Input
+            type="number"
+            min={0}
+            pattern="[0-9]"
+            inputMode="numeric"
+            label="Número da Mesa"
+            labelPlacement="outside"
+            radius="sm"
+            value={number}
+            onChange={(e) => setNumber(e.target.value)}
+            startContent={
+              <Hash className="pointer-events-none flex-shrink-0 text-2xl text-default-400" />
+            }
+          />
 
-      {/* Formulário para adicionar ou editar uma mesa */}
-      <div className="flex gap-4">
-        <Input
-          type="number"
-          min={0}
-          pattern="[0-9]"
-          inputMode="numeric"
-          label="Número da Mesa"
-          value={number}
-          onChange={(e) => setNumber(e.target.value)}
-          startContent={
-            <Hash className="pointer-events-none flex-shrink-0 text-2xl text-default-400" />
-          }
-        />
+          <Input
+            type="number"
+            max={6}
+            min={0}
+            pattern="[0-9]"
+            inputMode="numeric"
+            label="Assentos"
+            labelPlacement="outside"
+            radius="sm"
+            value={seats}
+            onChange={(e) => setSeats(e.target.value)}
+            startContent={
+              <Chair className="pointer-events-none flex-shrink-0 text-2xl text-default-400" />
+            }
+          />
+        </div>
 
-        <Input
-          type="number"
-          max={6}
-          min={0}
-          pattern="[0-9]"
-          inputMode="numeric"
-          label="Assentos"
-          value={seats}
-          onChange={(e) => setSeats(e.target.value)}
-          startContent={
-            <Chair className="pointer-events-none flex-shrink-0 text-2xl text-default-400" />
-          }
-        />
-      </div>
-
-      {/* Opções para mesa reservada e cliente associado */}
-      <div className="flex min-h-14 items-center justify-between gap-4">
-        <Switch
-          size="sm"
-          isSelected={isReserved}
-          onChange={(e) => setIsReserved(e.target.checked)}
-        >
-          Reservada?
-        </Switch>
-
-        {/* Select para escolher o cliente associado à mesa */}
-        {isReserved && (
-          <Select
-            label="Selecione um Cliente"
-            selectedKeys={[selectedClientId]}
-            onChange={(e) => setSelectedClientId(e.target.value)}
+        <div className="flex min-h-14 items-center justify-between gap-4">
+          <Switch
+            size="sm"
+            isSelected={isReserved}
+            onChange={(e) => setIsReserved(e.target.checked)}
           >
-            {clients.map((client) => (
-              <SelectItem key={client.id} value={client.id}>
-                {client.name}
-              </SelectItem>
-            ))}
-          </Select>
-        )}
-      </div>
+            Reservada?
+          </Switch>
 
-      {/* Botão para adicionar ou atualizar uma mesa */}
-      <div className="flex flex-col items-center justify-center gap-3">
-        <Button
-          color="primary"
-          size="lg"
-          fullWidth
-          onClick={
-            editingTable
-              ? () => handleUpdateTable(editingTable.id)
-              : handleAddTable
-          }
-        >
-          {editingTable ? "Atualizar" : "Cadastrar"}
-        </Button>
+          {isReserved && (
+            <Select
+              label="Selecione um Cliente"
+              radius="sm"
+              selectedKeys={[selectedClientId]}
+              onChange={(e) => setSelectedClientId(e.target.value)}
+            >
+              {clients.map((client) => (
+                <SelectItem key={client.id} value={client.id}>
+                  {client.name}
+                </SelectItem>
+              ))}
+            </Select>
+          )}
+        </div>
 
-        <Button className="w-fit" size="sm" onClick={resetForm}>
-          Limpar
-        </Button>
-      </div>
+        <div className="flex flex-col items-center justify-center gap-3">
+          <Button
+            color="primary"
+            size="lg"
+            radius="sm"
+            fullWidth
+            onClick={
+              editingTable
+                ? () => handleUpdateTable(editingTable.id)
+                : handleAddTable
+            }
+          >
+            {editingTable ? "Atualizar" : "Cadastrar"}
+          </Button>
 
-      {/* Tabela para listar as mesas */}
-      <Table isStriped className="md:max-h-40">
+          <Button fullWidth size="sm" onClick={resetForm}>
+            Limpar
+          </Button>
+        </div>
+      </form>
+
+      <Table isStriped className="flex max-h-[600px] flex-grow">
         <TableHeader>
           <TableColumn>Nº</TableColumn>
           <TableColumn>ASSENTOS</TableColumn>
@@ -255,7 +240,6 @@ export const Tables: React.FC = () => {
           <TableColumn>AÇÕES</TableColumn>
         </TableHeader>
 
-        {/* Corpo da tabela */}
         <TableBody
           emptyContent={<Spinner label="Carregando..." color="primary" />}
         >
@@ -266,10 +250,18 @@ export const Tables: React.FC = () => {
               <TableCell className="text-xs">
                 {table.isReserved ? (
                   <>
-                    {table.clientId
-                      ? clients.find((client) => client.id === table.clientId)
-                          ?.name || "Cliente não encontrado"
-                      : "Cliente não atribuído"}
+                    {table.clientId ? (
+                      clients.find((client) => client.id === table.clientId)
+                        ?.name || (
+                        <Chip color="warning" size="sm" variant="flat">
+                          Cliente não encontrado
+                        </Chip>
+                      )
+                    ) : (
+                      <Chip color="danger" size="sm" variant="flat">
+                        Cliente não atribuído
+                      </Chip>
+                    )}
                   </>
                 ) : (
                   <Chip color="success" size="sm" variant="flat">
@@ -278,7 +270,6 @@ export const Tables: React.FC = () => {
                 )}
               </TableCell>
               <TableCell>
-                {/* Botões para editar e deletar uma mesa */}
                 <div className="relative flex items-center gap-2">
                   <Tooltip content="Editar">
                     <span className="cursor-pointer text-lg text-default-400 active:opacity-50">
@@ -296,6 +287,6 @@ export const Tables: React.FC = () => {
           ))}
         </TableBody>
       </Table>
-    </section>
+    </main>
   );
 };
