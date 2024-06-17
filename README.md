@@ -8,14 +8,12 @@
 
 ## 🖼️ Screenshots
 <div style="text-align: center">
-<img src="public/images/screenshots/01-Welcome.png" alt="Welcome" width="150" style="margin: 8px">
-<img src="public/images/screenshots/02-Login.png" alt="Login" width="150" style="margin: 8px">
-<img src="public/images/screenshots/03-Menu.png" alt="Menu" width="150" style="margin: 8px">
-<img src="public/images/screenshots/04-Dashboard.png" alt="Dashboard" width="150" style="margin: 8px">
-<img src="public/images/screenshots/05-Mesa.png" alt="Mesa" width="150" style="margin: 8px">
-<img src="public/images/screenshots/06-Cliente.png" alt="Cliente" width="150" style="margin: 8px">
-<img src="public/images/screenshots/07-Cardapio.png" alt="Cardápio" width="150" style="margin: 8px">
-<img src="public/images/screenshots/08-404.png" alt="404" width="150" style="margin: 8px">
+<img src="public/images/screenshots/01login.png" style="margin: 8px">
+<img src="public/images/screenshots/02dashboard.png" style="margin: 8px">
+<img src="public/images/screenshots/03client.png" style="margin: 8px">
+<img src="public/images/screenshots/04table.png" style="margin: 8px">
+<img src="public/images/screenshots/05food.png" style="margin: 8px">
+<img src="public/images/screenshots/06404.png" style="margin: 8px">
 </div>
 
 
