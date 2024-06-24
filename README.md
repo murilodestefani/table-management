@@ -1,4 +1,4 @@
-# <p style="text-align: center">Table Management</p>
+# <p style="text-align: center">Table Ease</p>
 
 ![Vercel Deploy](https://deploy-badge.vercel.app/vercel/table-management)
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
